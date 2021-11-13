@@ -5,7 +5,15 @@ import java.util.Collections;
 
 public class Player {
 
-    ArrayList<Card> Cards=new ArrayList<>();
+    private ArrayList<Card> Cards = new ArrayList<>();
+
+    public ArrayList<Card> getCards() {
+        return Cards;
+    }
+
+    public void setCards(ArrayList<Card> cards) {
+        Cards = cards;
+    }
 
     public void getCards(Deck d){
 
@@ -19,6 +27,6 @@ public class Player {
         for (Card c: Cards){
             System.out.println(c.getSuit() + " " + c.getRank() + " ");
         }
-        System.out.println("");
+        System.out.println();
     }
 }
