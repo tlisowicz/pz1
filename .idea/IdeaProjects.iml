@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/Poker/.idea/shelf" />
+      <excludeFolder url="file://$MODULE_DIR$/lab3/target/archive-tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/Poker/poker-client/target/archive-tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/Poker/poker-client/target/generated-sources" />
+      <excludeFolder url="file://$MODULE_DIR$/Poker/poker-client/target/generated-test-sources" />
+      <excludeFolder url="file://$MODULE_DIR$/Poker/poker-common/target/classes" />
+      <excludeFolder url="file://$MODULE_DIR$/Poker/poker-common/target/generated-sources" />
+      <excludeFolder url="file://$MODULE_DIR$/Poker/poker-common/target/generated-test-sources" />
+      <excludeFolder url="file://$MODULE_DIR$/Poker/poker-model/target/generated-sources" />
+      <excludeFolder url="file://$MODULE_DIR$/Poker/poker-model/target/generated-test-sources" />
+      <excludeFolder url="file://$MODULE_DIR$/Poker/poker-model/target/test-classes" />
+      <excludeFolder url="file://$MODULE_DIR$/Poker/poker-server/target/archive-tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/Poker/poker-server/target/generated-sources" />
+      <excludeFolder url="file://$MODULE_DIR$/Poker/poker-server/target/generated-test-sources" />
+      <excludeFolder url="file://$MODULE_DIR$/lab1/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/lab1/out" />
+      <excludeFolder url="file://$MODULE_DIR$/lab2/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/lab2/target" />
+      <excludeFolder url="file://$MODULE_DIR$/lab3/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/lab3/target" />
+      <excludeFolder url="file://$MODULE_DIR$/Poker/poker-client/target" />
+      <excludeFolder url="file://$MODULE_DIR$/Poker/poker-common/target" />
+      <excludeFolder url="file://$MODULE_DIR$/Poker/poker-model/target" />
+      <excludeFolder url="file://$MODULE_DIR$/Poker/poker-server/target" />
+      <excludeFolder url="file://$MODULE_DIR$/Poker/.idea" />
+      <excludeFolder url="file://$MODULE_DIR$/Project_for_tests" />
+      <excludeFolder url="file://$MODULE_DIR$/test" />
+      <excludeFolder url="file://$MODULE_DIR$/lab3/lab3-commons/target" />
+      <excludeFolder url="file://$MODULE_DIR$/lab3/lab3-modul2/target" />
+      <excludeFolder url="file://$MODULE_DIR$/lab1/src/META-INF" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

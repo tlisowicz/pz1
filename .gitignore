@@ -1,0 +1,17 @@
+/test/
+/Project_for_tests/
+lab1/.idea
+lab1/out
+lab2/.idea
+lab2/target
+lab3/.idea
+lab3/target
+lab3/lab3-commons/target
+lab3/lab3-commons/dependency-reduced-pom.xml
+lab3/lab3-modul2/target
+Poker/.idea
+Poker/poker-client/target
+Poker/poker-common/target
+Poker/poker-server/target
+Poker/poker-model/target
+lab1/src/META-INF

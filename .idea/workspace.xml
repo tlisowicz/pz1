@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="3452d919-e267-4f1f-bb64-b47b5aa90e88" name="Changes" comment="initial comit">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/IdeaProjects.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/runConfigurations.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Poker/poker-client/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Poker/poker-client/src/main/java/pl/edu/agh/kis/pz1/Main2.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Poker/poker-client/src/test/java/pl/edu/agh/kis/pz1/Main2Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Poker/poker-common/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Poker/poker-model/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Poker/poker-model/src/main/java/pl/edu/agh/kis/pz1/model/Card.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Poker/poker-model/src/main/java/pl/edu/agh/kis/pz1/model/Deck.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Poker/poker-model/src/main/java/pl/edu/agh/kis/pz1/model/Player.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Poker/poker-model/src/main/java/pl/edu/agh/kis/pz1/model/Rank.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Poker/poker-model/src/main/java/pl/edu/agh/kis/pz1/model/Suit.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Poker/poker-model/src/main/java/pl/edu/agh/kis/pz1/model/TextUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Poker/poker-server/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Poker/poker-server/src/main/java/pl/edu/agh/kis/pz1/Main1.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Poker/poker-server/src/test/java/pl/edu/agh/kis/pz1/Main1Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Poker/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Poker/readme.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab1/lab1.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab1/src/Problem610A.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab1/src/pl/edu/agh/pz1/HelloWorld.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab1/src/pl/edu/agh/pz1/HelloWorld.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab2/lab2.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab2/src/cards/Card.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab2/src/cards/Deck.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab2/src/cards/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab2/src/cards/Player.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab2/src/cards/Rank.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab2/src/cards/Suit.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab2/src/lab2/Dog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab2/src/lab2/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab2/src/lab2/X.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab2/src/lab2/Y.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab2/src/main/java/cards/Card.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab2/src/main/java/cards/Deck.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab2/src/main/java/cards/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab2/src/main/java/cards/Player.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab2/src/main/java/cards/Rank.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab2/src/main/java/cards/Suit.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab2/src/main/java/lab2/Dog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab2/src/main/java/lab2/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab2/src/main/java/lab2/X.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab2/src/main/java/lab2/Y.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab3/lab3-commons/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab3/lab3-commons/src/main/java/utils/CryptUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab3/lab3-commons/src/test/java/CryptUtilTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab3/lab3-modul2/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab3/lab3-modul2/src/main/java/pl/edu/agh/pz/Card.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab3/lab3-modul2/src/main/java/pl/edu/agh/pz/Deck.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab3/lab3-modul2/src/main/java/pl/edu/agh/pz/Main.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab3/lab3-modul2/src/main/java/pl/edu/agh/pz/Player.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab3/lab3-modul2/src/main/java/pl/edu/agh/pz/Rank.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab3/lab3-modul2/src/main/java/pl/edu/agh/pz/Suit.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab3/lab3-modul2/src/test/java/DeckTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/lab3/pom.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="203Gij0UwiHa8SWCVoOup0cSYjQ" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="3452d919-e267-4f1f-bb64-b47b5aa90e88" name="Changes" comment="" />
+      <created>1635265987992</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1635265987992</updated>
+      <workItem from="1635265988701" duration="4000" />
+      <workItem from="1635266011603" duration="9000" />
+      <workItem from="1636828962415" duration="288000" />
+      <workItem from="1636829396593" duration="72000" />
+      <workItem from="1636829480882" duration="570000" />
+      <workItem from="1636831281190" duration="1058000" />
+      <workItem from="1636832359271" duration="711000" />
+    </task>
+    <task id="LOCAL-00001" summary="initial commit">
+      <created>1636829982220</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1636829982220</updated>
+    </task>
+    <task id="LOCAL-00002" summary="try">
+      <created>1636831404029</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1636831404029</updated>
+    </task>
+    <task id="LOCAL-00003" summary=".gitignore add">
+      <created>1636831954831</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1636831954831</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
+    <MESSAGE value="initial commit" />
+    <MESSAGE value="try" />
+    <MESSAGE value=".gitignore add" />
+    <MESSAGE value="initial comit" />
+    <option name="LAST_COMMIT_MESSAGE" value="initial comit" />
+  </component>
+</project>
