@@ -57,5 +57,10 @@ public class Deck {
 
     }
 
+    public void add(Card card){
+
+        this.Deck.add(card);
+    }
+
 
 }
