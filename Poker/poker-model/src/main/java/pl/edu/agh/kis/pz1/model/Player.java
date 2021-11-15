@@ -30,7 +30,7 @@ public class Player {
 
         }
     }
-    public void show_cards(){
+    public void showCards(){
         System.out.println("Your Cards: \n");
         for (Card c: Cards){
             System.out.println((Cards.indexOf(c)+ 1) + ". " + c.getSuit() + " " + c.getRank() + " ");
@@ -55,7 +55,7 @@ public class Player {
                 int pos = scanner.nextInt()-1;
                 if (pos > 4 || pos < 0 || positions.contains(pos)){
 
-                    throw new IndexOutOfBoundsException("Given invalid string of indexes.");
+                    throw new IndexOutOfBoundsException("Given invalid string of indexes. Check, whether you have given wrong card number or multiple times the same number.");
                 }
                 positions.add(pos);
             }

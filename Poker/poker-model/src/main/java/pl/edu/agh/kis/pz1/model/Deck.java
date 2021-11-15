@@ -57,6 +57,9 @@ public class Deck {
 
     }
 
+    /* TODO:
+        Sprawdzic czy nie dodaje karty, ktora juz jest w talii
+     */
     public void add(Card card){
 
         this.Deck.add(card);
