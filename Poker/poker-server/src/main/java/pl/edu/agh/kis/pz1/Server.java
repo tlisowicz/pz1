@@ -8,48 +8,49 @@ import java.util.Scanner;
 public class Server {
 
     public static final int PORT = 5555;
-    public final String IP_ADDRESS= "127.0.0.0";
+    private ServerSocket serverSocket;
 
-    public ServerSocket getServerSocket(int port) throws IOException {
-        return new ServerSocket(port);
+    public Server(ServerSocket serverSocket){
+        this.serverSocket = serverSocket;
     }
 
-    public static void main(String [] args) {
-        try {
-            ServerSocket serverSocket = new ServerSocket(PORT);
-            System.out.println("Waiting For players...");
+    public void serverStart(){
+        try{
 
-            /*while (true) {
+            while(!serverSocket.isClosed()){
+                Socket socket = serverSocket.accept();
+                System.out.println("A player has jointed the game.");
+                ClientHandler clientHandler = new ClientHandler(socket);
+
+                Thread clientThread = new Thread(clientHandler);
+                clientThread.start();
 
 
-                Socket clientSocket = serverSocket.accept();
-                Thread thread = new Thread(){
-                    public void run(){
-                        try {
-                            PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
-                            Scanner in = new Scanner(clientSocket.getInputStream());
-                            while (in.hasNextLine()) {
-                                String input = in.nextLine();
-                                if (input.equalsIgnoreCase("exit")) {
-                                    break;
-                                }
-                                System.out.println("Received radius from client: " + input);
-
-                                double radius = Double.parseDouble(input);
-                                double area = Math.PI* radius *radius ;
-                                out.println(area);
-                            }
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                };
-                thread.start();
-                }*/
-            } catch(IOException e){
-                e.printStackTrace();
             }
+        } catch (IOException e) {
+
         }
+    }
+
+    public void closeConnection(){
+        try {
+            if (serverSocket != null){
+
+                serverSocket.close();
+            }
+        } catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String [] args) throws IOException {
+
+        ServerSocket serverSocket = new ServerSocket(PORT);
+        Server server = new Server(serverSocket);
+        System.out.println("SERVER STARTED.\n Waiting for players...");
+        server.serverStart();
+    }
+
     }
 
 

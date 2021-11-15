@@ -1,5 +1,7 @@
 package pl.edu.agh.kis.pz1.model;
 
+import PokerExceptions.MultipleIdenticalCardsInDeckException;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -62,7 +64,15 @@ public class Deck {
      */
     public void add(Card card){
 
-        this.Deck.add(card);
+        try{
+            if (this.Deck.contains(card)) {
+                throw new MultipleIdenticalCardsInDeckException("Card is already in the Deck.");
+            }
+            this.Deck.add(card);
+
+        } catch (MultipleIdenticalCardsInDeckException e){
+            System.out.println("Card is already in the Deck.");
+        }
     }
 
 
