@@ -49,6 +49,7 @@ public class Server {
         Server server = new Server(serverSocket);
         System.out.println("SERVER STARTED.\n Waiting for players...");
         server.serverStart();
+
     }
 
     }
