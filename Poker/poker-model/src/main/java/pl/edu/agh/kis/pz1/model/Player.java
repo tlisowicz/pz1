@@ -1,13 +1,11 @@
 package pl.edu.agh.kis.pz1.model;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Scanner;
 
 public class Player {
 
-    private final ArrayList<Card> Cards = new ArrayList<>();
+    private final ArrayList<Card> cards = new ArrayList<>();
     private int cash = 0;
 
 
@@ -20,54 +18,73 @@ public class Player {
     }
 
     public ArrayList<Card> getCards() {
-        return Cards;
+        return cards;
     }
 
     public void pickCards(Deck deck){
 
         for (int i = 0; i < 5; ++i) {
-            Cards.add( deck.getDeck().remove(0));
+            cards.add( deck.getCards().remove(0));
 
         }
     }
-    public void showCards(){
-        System.out.println("Your Cards: \n");
-        for (Card c: Cards){
-            System.out.println((Cards.indexOf(c)+ 1) + ". " + c.getSuit() + " " + c.getRank() + " ");
+    public String showCards() {
+        cards.sort(Deck.comparator);
+        StringBuilder builder = new StringBuilder();
+        builder.append("Your Cards:\n\n");
+        for (Card c: cards){
+            builder.append(cards.indexOf(c) + 1).append(". ").append(c.getSuit()).append(" ").append(c.getRank()).append(" \n");
         }
-        System.out.println();
+        return builder.toString();
     }
 
-    public void pass(){
+    public String showCash(){
+        return "Your Cash: " + getCash()+ "$\n";
 
+    }
+
+    public void takeAnte(int ante) {
+        cash-= ante;
     }
 
     /* TODO:
         Zajac sie wyjatkiem wyrzucanym
     */
-    public void exchange(String indexes, Deck deck) throws IndexOutOfBoundsException{
+
+    public void exchange(String indexes, Deck deck) {
 
         ArrayList<Card> Cards = getCards();
-        Scanner  scanner= new Scanner(indexes).useDelimiter("[,\\s+]");
-        ArrayList<Integer> positions = new ArrayList<>();
-        while (scanner.hasNext()){
-            if (scanner.hasNextInt()){
-                int pos = scanner.nextInt()-1;
-                if (pos > 4 || pos < 0 || positions.contains(pos)){
+        try (Scanner scanner = new Scanner(indexes).useDelimiter("[,\\s+]")) {
+            ArrayList<Integer> positions = new ArrayList<>();
+            while (scanner.hasNext()) {
+                if (scanner.hasNextInt()) {
+                    int pos = scanner.nextInt() - 1;
+                    if (pos > 4 || pos < 0 || positions.contains(pos)) {
 
-                    throw new IndexOutOfBoundsException("Given invalid string of indexes. Check, whether you have given wrong card number or multiple times the same number.");
+                        throw new IndexOutOfBoundsException();
+                    }
+                    positions.add(pos);
+                } else {
+                    scanner.next();
                 }
-                positions.add(pos);
             }
-            else{
-                scanner.next();
+            for (int i : positions) {
+                deck.add(Cards.get(i));
+                Cards.remove(i);
+                Cards.add(i, deck.getCards().remove(0));
             }
-        }
-
-        for (int i : positions){
-            deck.add(Cards.get(i));
-            Cards.remove(i);
-            Cards.add(i, deck.getDeck().remove(0));
         }
     }
+
+    public void raise(int stake) {
+        this.cash -= stake;
+    }
+
+    public void fold(Deck deck){
+        for (Card card: cards) {
+            deck.add(card);
+        }
+        cards.clear();
+    }
+
 }

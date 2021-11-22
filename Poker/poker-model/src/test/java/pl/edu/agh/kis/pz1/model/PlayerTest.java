@@ -11,7 +11,7 @@ public class PlayerTest {
     private Player p;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         p = new Player();
 }
 
@@ -20,7 +20,7 @@ public class PlayerTest {
 
         Deck deck = new Deck();
         p.pickCards(deck);
-        ArrayList<Card> d = deck.getDeck();
+        ArrayList<Card> d = deck.getCards();
         ArrayList<Card> Cards = new ArrayList<>(p.getCards());
         p.exchange("1,2,3", deck);
         ArrayList<Card> Cards2 = new ArrayList<>(p.getCards());
@@ -28,7 +28,7 @@ public class PlayerTest {
         for (int i = 0; i < 3; ++i){
            // Card c =;
             System.out.println("Deck should contain " + Cards.get(i).getRank() + " " + Cards.get(i).getSuit());
-            Assert.assertTrue(deck.getDeck().contains(Cards.get(i)));
+            Assert.assertTrue(deck.getCards().contains(Cards.get(i)));
         }
 
     }

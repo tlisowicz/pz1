@@ -1,10 +1,14 @@
 package pl.edu.agh.kis.pz1;
 
 
+import pl.edu.agh.kis.pz1.Utils.Utils;
+import pokerExceptions.MaxNumberOfPlayersException;
+
 import java.io.*;
 import java.net.ConnectException;
 import java.net.Socket;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 public class Client {
 
@@ -12,6 +16,7 @@ public class Client {
     private BufferedReader reader;
     private BufferedWriter writer;
     private String name;
+    private final Logger logger = Logger.getLogger(getClass().getName());
 
     public Client(Socket socket, String name) {
         try {
@@ -23,6 +28,10 @@ public class Client {
         } catch (IOException e) {
             closeStreams( socket, reader, writer);
         }
+    }
+
+    public Logger getLogger() {
+        return logger;
     }
 
     public void sendMessage() {
@@ -44,22 +53,22 @@ public class Client {
     }
 
     public void listenForMessage() {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                String serverMessage;
+        new Thread(() -> {
+            String serverMessage;
 
-                while (socket.isConnected()) {
-                    try {
-                        serverMessage = reader.readLine();
-                        System.out.println(serverMessage);
-                    } catch (IOException e) {
-
+            while (socket.isConnected()) {
+                try {
+                    serverMessage = reader.readLine();
+                    if (serverMessage.equals("DISCONNECTED")) {
                         closeStreams(socket, reader, writer);
                     }
-                }
+                    System.out.println(serverMessage);
+                } catch (IOException e) {
 
+                    closeStreams(socket, reader, writer);
+                }
             }
+
         }).start();
     }
 
@@ -80,19 +89,36 @@ public class Client {
     }
 
     public static void main(String [] args) throws IOException {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter your name: ");
-        String name = scanner.nextLine();
 
-        try {
+        try(Scanner scanner = new Scanner(System.in)) {
+
+            //problem z poprawnym odczytem statycznej zmiennej gameStarted
+            if (Utils.gameStarted) {
+                throw new MaxNumberOfPlayersException();
+            }
             Socket socket = new Socket("localhost", Server.PORT);
+            String name;
+            while (true) {
+
+                System.out.println("Enter your name: ");
+                name = scanner.nextLine();
+                if (name.equals("")) {
+                    System.out.println("Incorrect name try again");
+                }
+                else {
+                    break;
+                }
+            }
             Client client = new Client(socket, name);
 
             client.listenForMessage();
             client.sendMessage();
 
+        } catch (MaxNumberOfPlayersException e) {
+            System.out.println("Game has already started. Please try again later.");
+
         } catch (ConnectException e) {
-            System.out.println("Server is down or the game has already started. Please try again later.");
+            System.out.println("Server is down. Please try again later.");
         }
     }
 }

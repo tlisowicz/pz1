@@ -1,4 +1,4 @@
-package PokerExceptions;
+package pokerExceptions;
 
 public class MultipleIdenticalCardsInDeckException extends Exception{
 

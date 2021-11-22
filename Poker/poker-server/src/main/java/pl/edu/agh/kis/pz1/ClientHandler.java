@@ -1,10 +1,11 @@
 package pl.edu.agh.kis.pz1;
 
+import pl.edu.agh.kis.pz1.Utils.Utils;
 import pl.edu.agh.kis.pz1.model.Player;
-
 import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
+
 
 public class ClientHandler implements Runnable {
 
@@ -16,7 +17,6 @@ public class ClientHandler implements Runnable {
     private int id;
     private boolean isMyTurn = false;
     private Player player;
-
     public ClientHandler(Socket socket) {
         try {
             this.socket = socket;
@@ -33,33 +33,55 @@ public class ClientHandler implements Runnable {
             closeStreams(socket, writer, reader);
         }
     }
+    public boolean isMyTurn() {
+        return isMyTurn;
+    }
+
+    public void setMyTurn(boolean myTurn) {
+        isMyTurn = myTurn;
+    }
 
     public int getId() {
         return id;
+    }
+
+    public Socket getSocket() {
+        return socket;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public BufferedReader getReader() {
         return reader;
     }
 
+    public Player getPlayer() {
+        return player;
+    }
+
+
     @Override
     public void run() {
-       /*String messageFromClient;
+       String messageFromClient;
 
-        while (socket.isConnected()) {
+        while (socket.isConnected() && !isMyTurn()) {
             try {
-                messageFromClient = reader.readLine();
-                broadcastMessage(messageFromClient);
+                if (Utils.gameStarted) {
+                    messageFromClient = reader.readLine();
+                    broadcastMessage(messageFromClient + "Its not your turn.");
+                }
+
             } catch (IOException e ) {
 
                 closeStreams(socket, writer, reader);
                 break;
             }
 
-        }*/
+        }
 
     }
-
 
     public void broadcastMessage(String message) {
         for (ClientHandler clientHandler : clients) {
@@ -77,7 +99,7 @@ public class ClientHandler implements Runnable {
         }
     }
 
-    public void loopbackMessage(String message) {
+    public void sendMessageToThisPlayer(String message) {
         for (ClientHandler clientHandler : clients) {
             try {
                 if (clientHandler.getId() == id) {
@@ -95,8 +117,12 @@ public class ClientHandler implements Runnable {
     public void removeClient() {
         clients.remove(this);
 
-        // TODO: Dodać metodę pass do gracza i ją wołać razem z tą poniżej
-        broadcastMessage("SERVER: " + name + " passed!.");
+        if (clients.size() > 0){
+            for (ClientHandler clientHandler: clients) {
+
+                broadcastMessage("SERVER: " + name + " passed!.");
+            }
+        }
     }
 
     public void closeStreams(Socket socket, BufferedWriter writer, BufferedReader reader) {

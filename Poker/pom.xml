@@ -1,55 +1,64 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>pl.edu.agh.kis.pz1</groupId>
-  <artifactId>Poker</artifactId>
-  <version>1.0</version>
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>pl.edu.agh.kis.pz1</groupId>
+    <artifactId>Poker</artifactId>
+    <version>1.0</version>
 
-  <name>POM PARENT</name>
-  <packaging>pom</packaging>
-
-
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.target>1.8</maven.compiler.target>
-    <maven.compiler.source>1.8</maven.compiler.source>
-  </properties>
-
-  <modules>
-      <module>poker-model</module>
-      <module>poker-server</module>
-      <module>poker-client</module>
-      <module>poker-common</module>
-  </modules>
+    <name>POM PARENT</name>
+    <packaging>pom</packaging>
 
 
-  <dependencyManagement>
-      <dependencies>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <!--suppress UnresolvedMavenProperty -->
+        <sonar.coverage.jacoco.xmlReportPaths>${project.basedir}/../${aggregate.report.dir}</sonar.coverage.jacoco.xmlReportPaths>
 
-          <dependency>
-              <groupId>pl.edu.agh.kis.pz1</groupId>
-              <artifactId>poker-server</artifactId>
-              <version>1.0</version>
-          </dependency>
-          <dependency>
-              <groupId>pl.edu.agh.kis.pz1</groupId>
-              <artifactId>poker-client</artifactId>
-              <version>1.0</version>
-          </dependency>
-          <dependency>
-              <groupId>pl.edu.agh.kis.pz1</groupId>
-              <artifactId>poker-common</artifactId>
-              <version>1.0</version>
-          </dependency>
+    </properties>
 
-          <dependency>
-              <groupId>pl.edu.agh.kis.pz1</groupId>
-              <artifactId>poker-model</artifactId>
-              <version>1.0</version>
-          </dependency>
+    <modules>
+        <module>poker-model</module>
+        <module>poker-server</module>
+        <module>poker-client</module>
+        <module>poker-common</module>
+    </modules>
 
-      </dependencies>
-  </dependencyManagement>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <dependency>
+                <groupId>pl.edu.agh.kis.pz1</groupId>
+                <artifactId>poker-server</artifactId>
+                <version>1.0</version>
+            </dependency>
+            <dependency>
+                <groupId>pl.edu.agh.kis.pz1</groupId>
+                <artifactId>poker-client</artifactId>
+                <version>1.0</version>
+            </dependency>
+            <dependency>
+                <groupId>pl.edu.agh.kis.pz1</groupId>
+                <artifactId>poker-common</artifactId>
+                <version>1.0</version>
+            </dependency>
+
+            <dependency>
+                <groupId>pl.edu.agh.kis.pz1</groupId>
+                <artifactId>poker-model</artifactId>
+                <version>1.0</version>
+            </dependency>
+
+            <!--<dependency>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.6</version>
+            </dependency>-->
+
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <pluginManagement>
@@ -70,6 +79,34 @@
                     <version>3.3.0</version>
                     <configuration>
                     </configuration>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>0.8.7</version>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>prepare-agent</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>0.8.7</version>
+                    <executions>
+                        <execution>
+                            <id>report</id>
+                            <goals>
+                                <goal>report-aggregate</goal>
+                            </goals>
+                            <phase>verify</phase>
+                        </execution>
+                    </executions>
                 </plugin>
             </plugins>
         </pluginManagement>

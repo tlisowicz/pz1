@@ -1,45 +1,39 @@
 package pl.edu.agh.kis.pz1.model;
 
-import PokerExceptions.MultipleIdenticalCardsInDeckException;
+import pokerExceptions.MultipleIdenticalCardsInDeckException;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Class representing Deck
  */
 public class Deck {
 
-    private final ArrayList<Card> Deck;
+    private ArrayList<Card> cards;
 
     /**
      *Constructor creating ArrayList Object with sorted cards
      */
     public Deck(){
-        this.Deck = new ArrayList<>();
+        this.cards = new ArrayList<>();
 
         for (Suit s: Suit.values()){
             for (Rank r : Rank.values())  {
-                Deck.add(new Card(r,s));
+                cards.add(new Card(r,s));
             }
         }
     }
 
-    public ArrayList<Card> getDeck() {
-        return Deck;
+    public ArrayList<Card> getCards() {
+        return cards;
     }
 
 
     /**
      * Util method for comparing two cards
      */
-    public Comparator<Card> comparator = new Comparator<Card>() {
-        @Override
-        public int compare(Card o1, Card o2) {
-            return o1.getRank().compareTo(o2.getRank());
-        }
-    };
+    public static Comparator<Card> comparator = (o1, o2) -> o1.getRank().compareTo(o2.getRank());
 
     /**
      * Sorted Deck getter
@@ -47,15 +41,15 @@ public class Deck {
      */
     public ArrayList<Card> getSortedDeck(){
 
-        Deck.sort(comparator);
-        return Deck;
+        cards.sort(comparator);
+        return cards;
     }
 
     /**
      * method for shuffling Cards in Deck
      */
     public void shuffle(){
-        Collections.shuffle(Deck);
+        Collections.shuffle(cards);
 
     }
 
@@ -65,13 +59,14 @@ public class Deck {
     public void add(Card card){
 
         try{
-            if (this.Deck.contains(card)) {
-                throw new MultipleIdenticalCardsInDeckException("Card is already in the Deck.");
+            if (this.cards.contains(card)) {
+                throw new MultipleIdenticalCardsInDeckException();
             }
-            this.Deck.add(card);
+            this.cards.add(card);
 
         } catch (MultipleIdenticalCardsInDeckException e){
-            System.out.println("Card is already in the Deck.");
+            ArrayList<Card> withDups = new ArrayList<>(cards);
+            cards = (ArrayList<Card>) withDups.stream().distinct().collect(Collectors.toList());
         }
     }
 
