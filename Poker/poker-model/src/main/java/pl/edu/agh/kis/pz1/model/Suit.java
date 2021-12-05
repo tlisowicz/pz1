@@ -1,7 +1,7 @@
 package pl.edu.agh.kis.pz1.model;
 
 /**
- * Kolor karty
+ * suit of a card
  */
 public enum Suit { CLUB, DIAMOND, HEART, SPADE
 }

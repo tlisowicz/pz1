@@ -1,17 +1,14 @@
 package pl.edu.agh.kis.pz1;
-
-
-import pl.edu.agh.kis.pz1.Utils.Utils;
-
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
+/**
+ * class representing server
+ */
 public class Server {
 
     public static final int PORT = 5555;
@@ -26,42 +23,23 @@ public class Server {
         return logger;
     }
 
-    public void serverStart(){
-        try{
-            while(!serverSocket.isClosed() && !Utils.gameStarted) {
+    /**
+     * method called in order to connect players to the server. After player's connection message: 'waiting for x players is displayed'
+     */
+    public void serverStart(int numberOfPlayers) {
+        try {
+            while(!serverSocket.isClosed() && ClientHandler.clients.size() < numberOfPlayers) {
+                int playersLeftToConnect =  numberOfPlayers - ClientHandler.clients.size();
                 Socket socket = serverSocket.accept();
-                logger.log(Level.INFO,"A player has jointed the game.");
+                logger.log(Level.INFO,"Player has jointed the game.");
 
                 ClientHandler clientHandler = new ClientHandler(socket);
                 Thread clientThread = new Thread(clientHandler);
                 clientThread.start();
+                --playersLeftToConnect;
+                if (playersLeftToConnect != 0) {
 
-                if (ClientHandler.clients.size() < 2) {
-                    ClientHandler.clients.get(0).sendMessageToThisPlayer("You need at least 2 players to start the game.");
-                }
-                else if (ClientHandler.clients.size() < 4) {
-                    Boolean [] responses = new Boolean[ClientHandler.clients.size()];
-                    ClientHandler.clients.get(0).broadcastMessage("Satisfied minimum number of players. Start the game?(y/n)");
-                    ClientHandler.clients.get(0).sendMessageToThisPlayer("Satisfied minimum number of players. Start the game?(y/n)");
-                    for (ClientHandler client: ClientHandler.clients) {
-                        String response = client.getReader().readLine();
-                        responses[ClientHandler.clients.indexOf(client)] = response.equals("y");
-                    }
-                    Arrays.sort(responses);
-                    boolean previous = true;
-                    for (Boolean i : responses) {
-                        Utils.gameStarted = previous && i;
-                        previous = i ;
-                    }
-                    if (!Utils.gameStarted) {
-                        ClientHandler.clients.get(0).broadcastMessage("Not everyone agreed.");
-                        ClientHandler.clients.get(0).sendMessageToThisPlayer("Not everyone agreed.");
-                    }
-
-                } else {
-                    ClientHandler.clients.get(0).broadcastMessage("Reached max number of players. The game is starting now.");
-                    ClientHandler.clients.get(0).sendMessageToThisPlayer("Reached max number of players. The game is starting now.");
-                    Utils.gameStarted = true;
+                    ClientHandler.clients.get(ClientHandler.clients.size()-1).sendMessageToThisPlayer("Waiting for "+ playersLeftToConnect + " more players.");
                 }
             }
         } catch (IOException e){
@@ -69,10 +47,12 @@ public class Server {
         }
     }
 
+    /**
+     * method for closing server socked
+     */
     public void closeConnection(){
         try {
             if (serverSocket != null){
-
                 serverSocket.close();
             }
         } catch (IOException e){
@@ -86,26 +66,34 @@ public class Server {
         Server server = new Server(serverSocket);
 
         Logger logger = server.getLogger();
+        if (Integer.parseInt(args[0]) <=0 || Integer.parseInt(args[0]) > 4) {
+            serverSocket.close();
+            logger.log(Level.INFO, "Illegal argument.");
+            System.exit(-1);
+        }
         logger.log(Level.INFO, "SERVER STARTED.\nWaiting for players...");
-        server.serverStart();
-        TimeUnit.SECONDS.sleep(1);
+        server.serverStart(Integer.parseInt(args[0]));
 
-        logger.log(Level.INFO, "GAME STARTED");
-        Game game = new Game();
+        while (true) {
+            TimeUnit.SECONDS.sleep(1);
 
-        ClientHandler.clients.get(0).broadcastMessage("First player, who joined will set ante.");
-        ClientHandler.clients.get(0).sendMessageToThisPlayer("First player, who joined will set ante.\nSet ante: ");
-        int ante = Integer.parseInt(ClientHandler.clients.get(0).getReader().readLine());
+            logger.log(Level.INFO, "GAME STARTED");
+            Game game = new Game();
 
-        game.setAnte(ante);
-        game.setPlayersCash();
-        game.startGame();
-        game.firstRound();
-        game.secondRound();
-        serverSocket.close();
-        System.exit(0);
+            game.setAnte();
+            game.setPlayersCash();
+            game.startGame();
+            game.firstRound(logger);
+            game.secondRound(logger);
+            game.showWinner();
+            logger.log(Level.INFO, "GAME ENDED");
+            TimeUnit.SECONDS.sleep(2);
+            game.clearHandsAndCash();
+            if (!game.playAgain()) {
+                break;
+            }
+        }
     }
-
-    }
+}
 
 

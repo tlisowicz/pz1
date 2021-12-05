@@ -15,22 +15,26 @@ public class PlayerTest {
         p = new Player();
 }
 
-@Test
+    @Test
     public void ShouldExchangeCards(){
 
         Deck deck = new Deck();
-        p.pickCards(deck);
+        for (int i = 0; i< 5; ++i){
+            p.getCard(deck.getCards().remove(0));
+        }
         ArrayList<Card> d = deck.getCards();
         ArrayList<Card> Cards = new ArrayList<>(p.getCards());
-        p.exchange("1,2,3", deck);
+        ArrayList<Integer> positions = new ArrayList<>();
+        positions.add(0);
+        positions.add(1);
+        positions.add(2);
+        p.exchange(positions, deck);
         ArrayList<Card> Cards2 = new ArrayList<>(p.getCards());
         Assert.assertNotEquals("Cards should be exchanged",Cards, Cards2);
         for (int i = 0; i < 3; ++i){
-           // Card c =;
             System.out.println("Deck should contain " + Cards.get(i).getRank() + " " + Cards.get(i).getSuit());
             Assert.assertTrue(deck.getCards().contains(Cards.get(i)));
         }
 
     }
-
 }

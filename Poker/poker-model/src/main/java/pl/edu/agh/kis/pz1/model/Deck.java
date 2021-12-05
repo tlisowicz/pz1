@@ -1,6 +1,6 @@
 package pl.edu.agh.kis.pz1.model;
 
-import pokerExceptions.MultipleIdenticalCardsInDeckException;
+import poker.Exceptions.MultipleIdenticalCardsInDeckException;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -50,11 +50,13 @@ public class Deck {
      */
     public void shuffle(){
         Collections.shuffle(cards);
-
     }
 
-    /* TODO:
-        Sprawdzic czy nie dodaje karty, ktora juz jest w talii
+    /**
+     * method for adding card to a deck when the player has folded.
+     * If A card is already in the deck Exception will be thrown
+     * @see MultipleIdenticalCardsInDeckException
+     * @param card Card to add
      */
     public void add(Card card){
 

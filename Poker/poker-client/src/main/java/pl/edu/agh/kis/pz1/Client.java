@@ -1,22 +1,22 @@
 package pl.edu.agh.kis.pz1;
 
 
-import pl.edu.agh.kis.pz1.Utils.Utils;
-import pokerExceptions.MaxNumberOfPlayersException;
-
 import java.io.*;
 import java.net.ConnectException;
 import java.net.Socket;
 import java.util.Scanner;
+import java.util.logging.Level;
 import java.util.logging.Logger;
-
+/**
+ * class representing client
+ */
 public class Client {
 
     private Socket socket;
     private BufferedReader reader;
     private BufferedWriter writer;
     private String name;
-    private final Logger logger = Logger.getLogger(getClass().getName());
+    private static final Logger logger = Logger.getLogger(Client.class.getName());
 
     public Client(Socket socket, String name) {
         try {
@@ -30,10 +30,17 @@ public class Client {
         }
     }
 
+    /**
+     * Logger to display important messages to client
+     * @return Logger
+     */
     public Logger getLogger() {
         return logger;
     }
 
+    /**
+     * Takes input from player and writes it to the buffer, which will be read out by clientHandler
+     */
     public void sendMessage() {
         try {
             writer.write(name);
@@ -52,6 +59,9 @@ public class Client {
         }
     }
 
+    /**
+     * Creates a new thread to read incoming messages independently of other clients
+     */
     public void listenForMessage() {
         new Thread(() -> {
             String serverMessage;
@@ -59,9 +69,6 @@ public class Client {
             while (socket.isConnected()) {
                 try {
                     serverMessage = reader.readLine();
-                    if (serverMessage.equals("DISCONNECTED")) {
-                        closeStreams(socket, reader, writer);
-                    }
                     System.out.println(serverMessage);
                 } catch (IOException e) {
 
@@ -72,6 +79,12 @@ public class Client {
         }).start();
     }
 
+    /**
+     * Closes streams. Called when error occurs
+     * @param socket client's socket
+     * @param reader client's buffer reader
+     * @param writer client's buffer writer
+     */
     private void closeStreams(Socket socket, BufferedReader reader, BufferedWriter writer) {
         try {
             if (reader != null){
@@ -92,18 +105,14 @@ public class Client {
 
         try(Scanner scanner = new Scanner(System.in)) {
 
-            //problem z poprawnym odczytem statycznej zmiennej gameStarted
-            if (Utils.gameStarted) {
-                throw new MaxNumberOfPlayersException();
-            }
             Socket socket = new Socket("localhost", Server.PORT);
             String name;
             while (true) {
 
-                System.out.println("Enter your name: ");
+                Client.logger.log(Level.INFO,"Enter your name: ");
                 name = scanner.nextLine();
                 if (name.equals("")) {
-                    System.out.println("Incorrect name try again");
+                    Client.logger.log(Level.INFO,"Incorrect name try again");
                 }
                 else {
                     break;
@@ -114,11 +123,8 @@ public class Client {
             client.listenForMessage();
             client.sendMessage();
 
-        } catch (MaxNumberOfPlayersException e) {
-            System.out.println("Game has already started. Please try again later.");
-
         } catch (ConnectException e) {
-            System.out.println("Server is down. Please try again later.");
+            Client.logger.log(Level.INFO,"Server is down. Please try again later.");
         }
     }
 }
