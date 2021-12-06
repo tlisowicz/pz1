@@ -183,7 +183,7 @@ public class Game {
                     break;
 
                 case (2):
-                    playerRises(clientHandler, hasToCall, canNextPlayerCheck, logger);
+                    playerRises(clientHandler, hasToCall);
                     goodIndex = true;
                     break;
 
@@ -221,7 +221,7 @@ public class Game {
                     break;
 
                 case (2):
-                    playerRises(clientHandler,hasToCall,canNextPlayerCheck, logger);
+                    playerRises(clientHandler,hasToCall);
                     goodIndex = true;
                     break;
 
@@ -264,38 +264,42 @@ public class Game {
      *
      * @param clientHandler client who rises
      * @param hasToCall arraylist of clients who will have to call, rise or fold after this player rises
-     * @param canNextPlayerCheck used in switchResponse method
-     * @param logger used in switchResponse method
      */
-    private void playerRises(ClientHandler clientHandler, ArrayList<Player> hasToCall, boolean canNextPlayerCheck, Logger logger) {
+    private void playerRises(ClientHandler clientHandler, ArrayList<Player> hasToCall) {
         int newStake = actualStake;
-        while (newStake <= actualStake || newStake > clientHandler.getPlayer().getCash()) {
 
-            newStake = getInputFromPlayer(clientHandler, "Actual stake is: " + actualStake + " input new stake: ");
-            if (newStake <= actualStake) {
-                clientHandler.sendMessageToThisPlayer("New stake cannot be lower than actual stake.");
+        while (newStake <= actualStake || newStake > clientHandler.getPlayer().getCash()) {
+            int response = getInputFromPlayer(clientHandler, "Actual stake is: " + actualStake + " input new stake: ");
+            if (response <= actualStake) {
+                clientHandler.sendMessageToThisPlayer("New stake cannot be lower or equal actual stake.");
             }
-            if (newStake > clientHandler.getPlayer().getCash()) {
-                int response = 0;
-                while (response <= 0 || response == 2) {
-                    response = getInputFromPlayer(clientHandler,"You don't have enough cash. You can instead:\n3. fold");
-                }
-                switchResponse(clientHandler,response,canNextPlayerCheck, hasToCall, logger);
+            if (response > clientHandler.getPlayer().getCash()) {
+                clientHandler.sendMessageToThisPlayer("You don't have enough cash. You will go all in.");
+                newStake = clientHandler.getPlayer().getCash();
+                clientHandler.getPlayer().setAllIn(true);
                 break;
             }
-        }
-        actualStake = newStake;
-        clientHandler.broadcastMessage("Player: " + clientHandler.getName() + " has risen stake! New stake is: " + actualStake + " $");
-        for (ClientHandler client: ClientHandler.clients) {
-            if (hasToCall.contains(client.getPlayer())) {
-                continue;
+            if (response <= clientHandler.getPlayer().getCash()){
+                newStake = response;
             }
-            hasToCall.add(client.getPlayer());
-            hasToCall.remove(clientHandler.getPlayer());
         }
-        clientHandler.getPlayer().raise(actualStake);
-        pool += newStake;
-        clientHandler.sendMessageToThisPlayer(clientHandler.getPlayer().showCash());
+        if (newStake <= clientHandler.getPlayer().getCash()) {
+            actualStake = newStake;
+            clientHandler.broadcastMessage("Player: " + clientHandler.getName() + " has risen stake! New stake is: " + actualStake + " $");
+            for (ClientHandler client: ClientHandler.clients) {
+                if (hasToCall.contains(client.getPlayer())) {
+                    continue;
+                }
+                if (!client.getPlayer().isAllIn()) {
+
+                    hasToCall.add(client.getPlayer());
+                }
+                hasToCall.remove(clientHandler.getPlayer());
+            }
+            clientHandler.getPlayer().raise(actualStake);
+            pool += newStake;
+            clientHandler.sendMessageToThisPlayer(clientHandler.getPlayer().showCash());
+        }
     }
 
     /**
@@ -306,7 +310,7 @@ public class Game {
     private void playerCalls(ClientHandler clientHandler, Logger logger) {
 
         if (actualStake > clientHandler.getPlayer().getCash()) {
-            clientHandler.sendMessageToThisPlayer("You don't have enough money to play further. You have to pass.");
+            clientHandler.sendMessageToThisPlayer("You don't have enough money to play further. You have to fold.");
             playersWhoFolded.add(clientHandler.getId());
             removePlayer(clientHandler, logger);
         } else {
@@ -346,7 +350,6 @@ public class Game {
                 }
                 clientHandler.sendMessageToThisPlayer(clientHandler.getPlayer().showCards());
                 clientHandler.sendMessageToThisPlayer(clientHandler.getPlayer().showCash());
-
                 clientHandler.sendMessageToThisPlayer("Do you want to exchange cards? (y/n)");
                 if (clientHandler.getReader().readLine().equals("y")) {
 

@@ -11,9 +11,14 @@ public class Player {
      */
     private final ArrayList<Card> cards = new ArrayList<>();
     /**
-     * actual amount of cash
+     * current amount of cash
      */
     private int cash = 0;
+
+    /**
+     * determinate if player when all in
+     */
+    private boolean allIn = false;
 
 
     public int getCash() {
@@ -28,11 +33,17 @@ public class Player {
         return cards;
     }
 
-    /**
-     *
-     */
+
     public void getCard(Card card){
         cards.add(card);
+    }
+
+    public void setAllIn(boolean allIn) {
+        this.allIn = allIn;
+    }
+
+    public boolean isAllIn() {
+        return allIn;
     }
 
     /**
