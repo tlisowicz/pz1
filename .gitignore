@@ -14,4 +14,9 @@ Poker/poker-client/target
 Poker/poker-common/target
 Poker/poker-server/target
 Poker/poker-model/target
+multithreading problem/library/target
+multithreading problem/reader/target
+multithreading problem/writer/target
+multithreading problem/utils/target
+multithreading problem/.idea
 lab1/src/META-INF
