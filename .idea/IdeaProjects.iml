@@ -33,6 +33,10 @@
       <excludeFolder url="file://$MODULE_DIR$/lab3/lab3-commons/target" />
       <excludeFolder url="file://$MODULE_DIR$/lab3/lab3-modul2/target" />
       <excludeFolder url="file://$MODULE_DIR$/lab1/src/META-INF" />
+      <excludeFolder url="file://$MODULE_DIR$/multithreading problem/library/target" />
+      <excludeFolder url="file://$MODULE_DIR$/multithreading problem/utils/target" />
+      <excludeFolder url="file://$MODULE_DIR$/multithreading problem/writer/target" />
+      <excludeFolder url="file://$MODULE_DIR$/multithreading problem/.idea" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
