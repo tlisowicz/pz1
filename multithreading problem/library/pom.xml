@@ -8,7 +8,7 @@
     <version>1.0</version>
   </parent>
 
-  <artifactId>main</artifactId>
+  <artifactId>library</artifactId>
   <name>Module containing class that shares a resource</name>
 
   <properties>
