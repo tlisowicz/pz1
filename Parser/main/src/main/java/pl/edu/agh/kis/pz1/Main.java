@@ -23,14 +23,13 @@ public class Main {
      * Method for creating and using JAXB marshall.
      * @param invoices list of invoices to parse
      */
-    public static void generateXML(InvoiceList invoices) {
+    public static void generateXML(InvoiceList invoices, String path) {
         try {
-            JAXBContext jaxbContext = null;
-            jaxbContext = JAXBContext.newInstance(InvoiceList.class);
+            JAXBContext jaxbContext = JAXBContext.newInstance(InvoiceList.class);
             Marshaller marshaller = jaxbContext.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
             logger.log(Level.INFO,"Parsing data...");
-            marshaller.marshal(invoices,new File("..\\Parser\\faktury.xml"));
+            marshaller.marshal(invoices,new File(path));
             logger.log(Level.INFO,"Done.");
 
         } catch (JAXBException e) {
@@ -44,7 +43,7 @@ public class Main {
         reader.read();
         List<Invoice> inv = reader.getInvoices();
         InvoiceList invoices = new InvoiceList(inv);
-        generateXML(invoices);
+        generateXML(invoices, "..\\Parser\\faktury\\faktury.xml");
 
 
 

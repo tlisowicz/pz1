@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3452d919-e267-4f1f-bb64-b47b5aa90e88" name="Changes" comment="changed gitignore">
-      <change afterPath="$PROJECT_DIR$/multithreading problem/library/src/main/java/pl/edu/agh/kis/pz1/Library.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/multithreading problem/reader/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/multithreading problem/reader/src/main/java/pl/edu/agh/kis/pz1/Reader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/multithreading problem/writer/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/multithreading problem/writer/src/main/java/pl/edu/agh/kis/pz1/Writer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Parser/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Parser/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/IdeaProjects.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/IdeaProjects.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Parser/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Parser/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,7 +26,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/multithreading problem" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Parser" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
@@ -47,6 +46,8 @@
       <workItem from="1636831281190" duration="1058000" />
       <workItem from="1636832359271" duration="998000" />
       <workItem from="1639831551142" duration="151000" />
+      <workItem from="1642188031388" duration="307000" />
+      <workItem from="1642262443126" duration="15000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1636829982220</created>

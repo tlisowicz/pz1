@@ -64,6 +64,8 @@ public class Invoice {
     @XmlElement(name = "CenaBruttoFakturyLacznie")
     private String invoiceGrossPrice;
 
+    @XmlElement(name = "RodzajFaktury")
+    private static final String TYPE = "VAT";
     /**
      * JAXB requires default constructor.
      */
@@ -143,7 +145,6 @@ public class Invoice {
                 default:
                     break;
             }
-
             ++i;
         }
     }

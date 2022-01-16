@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import lombok.Getter;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -20,7 +19,7 @@ public class Reader {
     /**
      * file extension specification
      */
-    private enum fileTypes {CSV, XLSX}
+    @Getter private enum fileTypes {CSV, XLSX}
 
     /**
      * path to a file.
@@ -73,7 +72,7 @@ public class Reader {
      */
     public void readCSV() {
 
-        BufferedReader csvReader = null;
+        BufferedReader csvReader;
         int lineCounter = 0;
         try {
             csvReader = new BufferedReader(new FileReader(path));
